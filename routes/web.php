@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Ideas;
-use App\Models\Post;
+use App\Models\Users;
+use Illuminate\Http\Request;
+
 
 Route::view('/', 'welcome', [
     'greeting' => 'Hello, World!',
@@ -19,32 +21,32 @@ Route::view('/', 'welcome', [
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
-Route::get('/formtest', function(){
+Route::get('/user_registration', function(){
     $posts = Post::all();
 
-    return view('formtest',[
+    return view('user_registration',[
         'posts' => $posts,
     ]);
 });
 
-Route::post('/formtest', function(){
+Route::post('/user_registration', function(){
     Post::create([
         'description' => request('description'),
     ]);
 
-    return redirect('/formtest');
+    return redirect('/user_registration');
 });
 
-Route::delete('/formtest/{id}', function ($id) {
+Route::delete('/user_registration/{id}', function ($id) {
     Post::findOrFail($id)->delete();
 
-    return redirect('/formtest');
+    return redirect('/user_registration');
 });
 
 Route::get('/delete', function(){
     Post::truncate();  
 
-    return redirect('/formtest');
+    return redirect('/user_registration');
 });
 
 
