@@ -1,4 +1,4 @@
-<x-layout>
+   <x-layout>
     <style>
         @keyframes gradientFlow {
             0% { background-position: 0% 50%; }
